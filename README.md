@@ -1,39 +1,138 @@
-# 3D FigureManager
+# Claybox³ᴰ
 
-Um **Dashboard de gerenciamento de vendas de Figures em 3D** desenvolvida em Rust + Slint, que permite estimar preço do produto, Organizar Estoque e Vendas.
+> Gerenciador completo para impressão 3D — Pedidos, Estoque, Impressoras e Envio em um único app.
 
-## Sumário
+[![Tauri](https://img.shields.io/badge/Tauri-v2-FFC131?logo=tauri&logoColor=white)](https://v2.tauri.app)
+[![Rust](https://img.shields.io/badge/Rust-Backend-DEA584?logo=rust&logoColor=white)](https://www.rust-lang.org)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-- [Sobre](#sobre)  
-- [Funcionalidades](#funcionalidades)  
-- [Capturas de Tela](#capturas-de-tela)  
- 
+---
 
 ## Sobre
 
-Um aplicativo desktop multiplataforma (Windows/Linux/macOS) escrito em Rust, com interface criada em Slint, para que makers e profissionais de impressão 3D consigam:
+**Claybox³ᴰ** é um aplicativo desktop multiplataforma (Windows / Linux) para makers e profissionais de impressão 3D. Centraliza o gerenciamento de pedidos, estoque de filamentos, impressoras e envios — tudo com uma interface moderna e responsiva.
 
-- Registrar Impressoras.  
-- Calcular o Valor de venda.  
-- Organizar pedidos de encomendas.  
-- Gerenciar Estoque personalizado.  
+Construído com **Tauri v2** (Rust no backend, HTML/CSS/JS no frontend), o app é leve, seguro e rápido.
 
 ## Funcionalidades
 
-- **Escolha de materiais**: defina preço, peso e quantidade de qualquer filamento.  
-- **Preço de venda**: Faz o calculo de gasto de energia e filamento pelo tempo de impressão
-- **Orçamento completo**: soma de material + tempo de máquina.  
-- **Personalização**: Dados personalizados de Impressoras e Estoque.  
+### 📊 Dashboard
+- Visão geral com estatísticas de vendas (total e mensal)
+- Consumo de filamento acumulado
+- Gráfico de status dos pedidos
+- Pedidos recentes com acesso rápido
 
-## Capturas de Tela
+### 📋 Pedidos
+- CRUD completo de pedidos com busca e ordenação
+- Importação automática de arquivos **G-code** e **3MF** (PrusaSlicer, BambuStudio, OrcaSlicer)
+- Calculadora de preço de venda integrada (energia + filamento + lucro)
+- Status rastreável: Pendente → Trabalhando → Concluído → Entregue
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/Balofoide/3DPrint-Price-Calculator/main/img/Dashboard_img.png" alt="Dashboard" width="300" />  
-  <img src="https://raw.githubusercontent.com/Balofoide/3DPrint-Price-Calculator/main/img/Estoque_img.png" alt="Estoque" width="300" />  
-  <img src="https://raw.githubusercontent.com/Balofoide/3DPrint-Price-Calculator/main/img/Impressoras_img.png" alt="Impressoras" width="300" />  
-  <img src="https://raw.githubusercontent.com/Balofoide/3DPrint-Price-Calculator/main/img/Pedidos_img.png" alt="Pedidos" width="300" />  
- 
-</div>  
+### 📦 Estoque
+- Gerenciamento de filamentos com peso, preço e cor
+- Barra de progresso visual de consumo
+- Busca e ordenação por qualquer campo
 
- 
- 
+### 🖨️ Impressoras
+- Cadastro de impressoras com potência (kW) e filamento carregado
+- Reabastecimento rápido vinculado ao estoque
+
+### ✈️ Envio (Melhor Envio)
+- Integração completa com a API do **Melhor Envio**
+- Cotação de frete com CEPs e dimensões
+- Criação de envios e carrinho de compras
+- Geração e impressão de etiquetas
+- Rastreamento de encomendas com timeline
+
+### ⚙️ Configurações
+- 8 temas visuais (dark, teal, pastel)
+- Custos de energia configuráveis
+- Dados do remetente para envios
+- Conexão OAuth com Melhor Envio (Sandbox e Produção)
+
+## Tech Stack
+
+| Camada | Tecnologia |
+|--------|-----------|
+| **Runtime** | [Tauri v2](https://v2.tauri.app) |
+| **Backend** | Rust (serde, reqwest, chrono, uuid) |
+| **Frontend** | HTML + Vanilla JS + CSS |
+| **Storage** | Arquivos JSONL (sem banco de dados externo) |
+| **API** | Melhor Envio (frete, etiquetas, rastreamento) |
+
+## Instalação
+
+### Pré-requisitos
+
+- [Rust](https://www.rust-lang.org/tools/install) (stable)
+- Dependências do Tauri v2:
+  - **Linux**: `sudo apt install libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf`
+  - **Windows**: WebView2 (incluso no Windows 10/11)
+
+### Build de desenvolvimento
+
+```bash
+cd src-tauri
+cargo tauri dev
+```
+
+### Build de produção
+
+```bash
+cd src-tauri
+cargo tauri build
+```
+
+Os binários ficam em `src-tauri/target/release/bundle/`:
+- **Linux**: `.deb` + `.AppImage`
+- **Windows**: `.msi` + `.exe`
+
+## Estrutura do Projeto
+
+```
+Claybox³ᴰ/
+├── frontend/
+│   ├── index.html              # SPA entry point
+│   ├── js/
+│   │   ├── api.js              # Tauri invoke wrapper
+│   │   ├── router.js           # SPA navigation + modals + toasts
+│   │   ├── store.js            # Estado reativo
+│   │   ├── themes.js           # 8 temas visuais
+│   │   ├── components.js       # UI components + SVG icons
+│   │   ├── titlebar.js         # macOS-style traffic lights
+│   │   └── pages/
+│   │       ├── dashboard.js
+│   │       ├── pedidos.js
+│   │       ├── estoque.js
+│   │       ├── impressoras.js
+│   │       ├── envio.js
+│   │       └── settings.js
+│   └── styles/
+│       ├── tokens.css          # Design tokens + temas
+│       ├── base.css            # Reset + scrollbar
+│       ├── layout.css          # Sidebar + grid
+│       ├── components.css      # Cards, buttons, modals...
+│       └── animations.css      # Micro-animações
+├── src-tauri/
+│   ├── src/
+│   │   ├── main.rs             # Entry point + command registration
+│   │   ├── models.rs           # Structs + serialization
+│   │   ├── storage.rs          # JSONL persistence layer
+│   │   └── commands/
+│   │       ├── clients.rs      # Pedidos CRUD
+│   │       ├── estoque.rs      # Estoque CRUD
+│   │       ├── printers.rs     # Impressoras CRUD
+│   │       ├── calculator.rs   # Calculadora de preço
+│   │       ├── gcode.rs        # Parser G-code + 3MF
+│   │       ├── envio.rs        # Melhor Envio API
+│   │       └── settings.rs     # Configurações
+│   ├── Cargo.toml
+│   └── tauri.conf.json
+└── .github/
+    └── workflows/
+        └── release.yml         # CI/CD Linux + Windows
+```
+
+## Licença
+
+[MIT](LICENSE)
