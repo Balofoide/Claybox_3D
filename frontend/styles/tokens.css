@@ -1,0 +1,502 @@
+/* =============================================================================
+   Figure Manager — Design Tokens
+   Premium 3D printing management software
+   ============================================================================= */
+
+:root {
+    /* ── Typography ─────────────────────────────────────────────────── */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-xs: 0.6875rem;    /* 11px */
+    --font-sm: 0.75rem;      /* 12px */
+    --font-base: 0.8125rem;  /* 13px */
+    --font-md: 0.875rem;     /* 14px */
+    --font-lg: 1rem;         /* 16px */
+    --font-xl: 1.25rem;      /* 20px */
+    --font-2xl: 1.5rem;      /* 24px */
+    --font-3xl: 1.75rem;     /* 28px */
+    --font-hero: 2rem;       /* 32px */
+
+    /* ── Spacing ────────────────────────────────────────────────────── */
+    --sp-2: 2px;
+    --sp-4: 4px;
+    --sp-6: 6px;
+    --sp-8: 8px;
+    --sp-10: 10px;
+    --sp-12: 12px;
+    --sp-16: 16px;
+    --sp-20: 20px;
+    --sp-24: 24px;
+    --sp-32: 32px;
+    --sp-40: 40px;
+
+    /* ── Radius ─────────────────────────────────────────────────────── */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 18px;
+    --radius-full: 9999px;
+
+    /* ── Transitions ────────────────────────────────────────────────── */
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --duration-fast: 120ms;
+    --duration: 200ms;
+    --duration-slow: 350ms;
+
+    /* ── Shadows (theme-agnostic structural definitions) ─────────── */
+    --shadow-sm: 0 1px 3px var(--shadow-color, rgba(0,0,0,0.2));
+    --shadow-md: 0 4px 16px var(--shadow-color, rgba(0,0,0,0.25));
+    --shadow-lg: 0 8px 32px var(--shadow-color, rgba(0,0,0,0.3));
+    --shadow-glow: 0 0 20px var(--primary-glow);
+
+    /* ── Z-Index ────────────────────────────────────────────────────── */
+    --z-sidebar: 10;
+    --z-header: 20;
+    --z-modal: 100;
+    --z-toast: 200;
+
+    /* ── Sidebar ────────────────────────────────────────────────────── */
+    --sidebar-width: 220px;
+    --sidebar-collapsed: 64px;
+}
+
+/* =============================================================================
+   Theme: Midnight (Default)
+   Deep navy + cyan/teal accents
+   ============================================================================= */
+[data-theme="midnight"], :root {
+    --bg-deep: #050a18;
+    --bg: #0a0f1e;
+    --bg-elevated: #0e1529;
+    --surface: rgba(14, 21, 41, 0.85);
+    --surface-2: rgba(20, 30, 55, 0.7);
+    --surface-3: rgba(28, 40, 68, 0.5);
+    --surface-hover: rgba(56, 189, 248, 0.04);
+    --surface-active: rgba(56, 189, 248, 0.08);
+
+    --border: rgba(148, 163, 184, 0.07);
+    --border-2: rgba(148, 163, 184, 0.12);
+    --border-focus: rgba(56, 189, 248, 0.4);
+
+    --primary: #38bdf8;
+    --primary-hover: #0ea5e9;
+    --primary-soft: rgba(56, 189, 248, 0.12);
+    --primary-glow: rgba(56, 189, 248, 0.2);
+    --primary-gradient: linear-gradient(135deg, #0ea5e9, #38bdf8);
+
+    --secondary: #818cf8;
+    --secondary-soft: rgba(129, 140, 248, 0.12);
+    --secondary-gradient: linear-gradient(135deg, #6366f1, #818cf8);
+
+    --accent: #34d399;
+    --accent-soft: rgba(52, 211, 153, 0.12);
+    --accent-gradient: linear-gradient(135deg, #10b981, #34d399);
+
+    --text: #f1f5f9;
+    --text-2: #94a3b8;
+    --text-3: #475569;
+    --text-inverse: #0a0f1e;
+
+    --danger: #f43f5e;
+    --danger-soft: rgba(244, 63, 94, 0.12);
+    --warning: #f59e0b;
+    --warning-soft: rgba(245, 158, 11, 0.12);
+    --info: #3b82f6;
+    --info-soft: rgba(59, 130, 246, 0.12);
+    --success: #10b981;
+    --success-soft: rgba(16, 185, 129, 0.12);
+
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --glass-bg: rgba(14, 21, 41, 0.6);
+    --glass-border: rgba(148, 163, 184, 0.08);
+    --backdrop-blur: 16px;
+
+    --sidebar-bg: rgba(8, 12, 28, 0.9);
+    --sidebar-border: rgba(148, 163, 184, 0.06);
+}
+
+/* =============================================================================
+   Theme: Forge
+   Industrial charcoal + amber/orange accents
+   ============================================================================= */
+[data-theme="forge"] {
+    --bg-deep: #0f0d0a;
+    --bg: #171310;
+    --bg-elevated: #1e1a15;
+    --surface: rgba(30, 26, 21, 0.85);
+    --surface-2: rgba(40, 35, 28, 0.7);
+    --surface-3: rgba(52, 45, 36, 0.5);
+    --surface-hover: rgba(251, 146, 60, 0.04);
+    --surface-active: rgba(251, 146, 60, 0.08);
+
+    --border: rgba(168, 150, 120, 0.08);
+    --border-2: rgba(168, 150, 120, 0.14);
+    --border-focus: rgba(251, 146, 60, 0.4);
+
+    --primary: #fb923c;
+    --primary-hover: #f97316;
+    --primary-soft: rgba(251, 146, 60, 0.12);
+    --primary-glow: rgba(251, 146, 60, 0.2);
+    --primary-gradient: linear-gradient(135deg, #f97316, #fb923c);
+
+    --secondary: #fbbf24;
+    --secondary-soft: rgba(251, 191, 36, 0.12);
+    --secondary-gradient: linear-gradient(135deg, #f59e0b, #fbbf24);
+
+    --accent: #ef4444;
+    --accent-soft: rgba(239, 68, 68, 0.12);
+    --accent-gradient: linear-gradient(135deg, #dc2626, #ef4444);
+
+    --text: #faf5ef;
+    --text-2: #a89b8c;
+    --text-3: #6b5e50;
+    --text-inverse: #171310;
+
+    --danger: #ef4444;
+    --danger-soft: rgba(239, 68, 68, 0.12);
+    --warning: #fbbf24;
+    --warning-soft: rgba(251, 191, 36, 0.12);
+    --info: #60a5fa;
+    --info-soft: rgba(96, 165, 250, 0.12);
+    --success: #4ade80;
+    --success-soft: rgba(74, 222, 128, 0.12);
+
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --glass-bg: rgba(30, 26, 21, 0.6);
+    --glass-border: rgba(168, 150, 120, 0.08);
+    --backdrop-blur: 16px;
+
+    --sidebar-bg: rgba(15, 13, 10, 0.92);
+    --sidebar-border: rgba(168, 150, 120, 0.06);
+}
+
+/* =============================================================================
+   Theme: Aurora
+   Deep purple/black + neon pink/violet accents
+   ============================================================================= */
+[data-theme="aurora"] {
+    --bg-deep: #080510;
+    --bg: #0e0a1a;
+    --bg-elevated: #150f26;
+    --surface: rgba(21, 15, 38, 0.85);
+    --surface-2: rgba(30, 22, 52, 0.7);
+    --surface-3: rgba(42, 32, 68, 0.5);
+    --surface-hover: rgba(217, 70, 239, 0.04);
+    --surface-active: rgba(217, 70, 239, 0.08);
+
+    --border: rgba(168, 130, 200, 0.08);
+    --border-2: rgba(168, 130, 200, 0.14);
+    --border-focus: rgba(217, 70, 239, 0.4);
+
+    --primary: #d946ef;
+    --primary-hover: #c026d3;
+    --primary-soft: rgba(217, 70, 239, 0.12);
+    --primary-glow: rgba(217, 70, 239, 0.2);
+    --primary-gradient: linear-gradient(135deg, #c026d3, #e879f9);
+
+    --secondary: #f472b6;
+    --secondary-soft: rgba(244, 114, 182, 0.12);
+    --secondary-gradient: linear-gradient(135deg, #ec4899, #f472b6);
+
+    --accent: #818cf8;
+    --accent-soft: rgba(129, 140, 248, 0.12);
+    --accent-gradient: linear-gradient(135deg, #6366f1, #818cf8);
+
+    --text: #f5f0ff;
+    --text-2: #a78bda;
+    --text-3: #5e467a;
+    --text-inverse: #0e0a1a;
+
+    --danger: #fb7185;
+    --danger-soft: rgba(251, 113, 133, 0.12);
+    --warning: #fbbf24;
+    --warning-soft: rgba(251, 191, 36, 0.12);
+    --info: #818cf8;
+    --info-soft: rgba(129, 140, 248, 0.12);
+    --success: #34d399;
+    --success-soft: rgba(52, 211, 153, 0.12);
+
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --glass-bg: rgba(21, 15, 38, 0.6);
+    --glass-border: rgba(168, 130, 200, 0.08);
+    --backdrop-blur: 16px;
+
+    --sidebar-bg: rgba(8, 5, 16, 0.92);
+    --sidebar-border: rgba(168, 130, 200, 0.06);
+}
+
+/* =============================================================================
+   Theme: Arctic
+   Clean light theme with soft blue accents
+   ============================================================================= */
+[data-theme="arctic"] {
+    --bg-deep: #eff3f8;
+    --bg: #f6f8fb;
+    --bg-elevated: #ffffff;
+    --surface: rgba(255, 255, 255, 0.9);
+    --surface-2: rgba(241, 245, 249, 0.8);
+    --surface-3: rgba(226, 232, 240, 0.5);
+    --surface-hover: rgba(59, 130, 246, 0.04);
+    --surface-active: rgba(59, 130, 246, 0.08);
+
+    --border: rgba(15, 23, 42, 0.06);
+    --border-2: rgba(15, 23, 42, 0.1);
+    --border-focus: rgba(59, 130, 246, 0.4);
+
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-soft: rgba(37, 99, 235, 0.08);
+    --primary-glow: rgba(37, 99, 235, 0.15);
+    --primary-gradient: linear-gradient(135deg, #1d4ed8, #3b82f6);
+
+    --secondary: #7c3aed;
+    --secondary-soft: rgba(124, 58, 237, 0.08);
+    --secondary-gradient: linear-gradient(135deg, #6d28d9, #7c3aed);
+
+    --accent: #059669;
+    --accent-soft: rgba(5, 150, 105, 0.08);
+    --accent-gradient: linear-gradient(135deg, #047857, #059669);
+
+    --text: #0f172a;
+    --text-2: #64748b;
+    --text-3: #94a3b8;
+    --text-inverse: #ffffff;
+
+    --danger: #dc2626;
+    --danger-soft: rgba(220, 38, 38, 0.08);
+    --warning: #d97706;
+    --warning-soft: rgba(217, 119, 6, 0.08);
+    --info: #2563eb;
+    --info-soft: rgba(37, 99, 235, 0.08);
+    --success: #059669;
+    --success-soft: rgba(5, 150, 105, 0.08);
+
+    --shadow-color: rgba(15, 23, 42, 0.06);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(15, 23, 42, 0.06);
+    --backdrop-blur: 12px;
+
+    --sidebar-bg: rgba(255, 255, 255, 0.95);
+    --sidebar-border: rgba(15, 23, 42, 0.06);
+}
+
+/* =============================================================================
+   Theme: Teal Sunset Dark
+   Deep teal + golden sun accents
+   ============================================================================= */
+[data-theme="teal-sunset-dark"] {
+    --bg-deep: #0a0c12;
+    --bg: #100f17;
+    --bg-elevated: #1a1825;
+    --surface: rgba(31, 28, 41, 0.85);
+    --surface-2: rgba(40, 36, 54, 0.7);
+    --surface-3: rgba(52, 46, 68, 0.5);
+    --surface-hover: rgba(48, 152, 152, 0.04);
+    --surface-active: rgba(48, 152, 152, 0.08);
+
+    --border: rgba(150, 140, 170, 0.08);
+    --border-2: rgba(150, 140, 170, 0.14);
+    --border-focus: rgba(48, 152, 152, 0.4);
+
+    --primary: #309898;
+    --primary-hover: #27807f;
+    --primary-soft: rgba(48, 152, 152, 0.12);
+    --primary-glow: rgba(48, 152, 152, 0.2);
+    --primary-gradient: linear-gradient(135deg, #27807f, #309898);
+
+    --secondary: #FF9F00;
+    --secondary-soft: rgba(255, 159, 0, 0.12);
+    --secondary-gradient: linear-gradient(135deg, #F4631E, #FF9F00);
+
+    --accent: #F4631E;
+    --accent-soft: rgba(244, 99, 30, 0.12);
+    --accent-gradient: linear-gradient(135deg, #d95518, #F4631E);
+
+    --text: #fffaee;
+    --text-2: #ccc8c0;
+    --text-3: #6b6574;
+    --text-inverse: #100f17;
+
+    --danger: #CB0404;
+    --danger-soft: rgba(203, 4, 4, 0.15);
+    --warning: #FF9F00;
+    --warning-soft: rgba(255, 159, 0, 0.12);
+    --info: #309898;
+    --info-soft: rgba(48, 152, 152, 0.12);
+    --success: #34d399;
+    --success-soft: rgba(52, 211, 153, 0.12);
+
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --glass-bg: rgba(31, 28, 41, 0.6);
+    --glass-border: rgba(150, 140, 170, 0.08);
+    --backdrop-blur: 16px;
+
+    --sidebar-bg: rgba(10, 12, 18, 0.92);
+    --sidebar-border: rgba(150, 140, 170, 0.06);
+}
+
+/* =============================================================================
+   Theme: Teal Sunset Light
+   Bright teal + warm golden accents
+   ============================================================================= */
+[data-theme="teal-sunset-light"] {
+    --bg-deep: #f0f0f5;
+    --bg: #ffffff;
+    --bg-elevated: #ffffff;
+    --surface: rgba(250, 250, 250, 0.9);
+    --surface-2: rgba(245, 245, 245, 0.8);
+    --surface-3: rgba(235, 235, 240, 0.5);
+    --surface-hover: rgba(48, 152, 152, 0.04);
+    --surface-active: rgba(48, 152, 152, 0.08);
+
+    --border: rgba(20, 20, 30, 0.06);
+    --border-2: rgba(20, 20, 30, 0.1);
+    --border-focus: rgba(48, 152, 152, 0.4);
+
+    --primary: #309898;
+    --primary-hover: #27807f;
+    --primary-soft: rgba(48, 152, 152, 0.08);
+    --primary-glow: rgba(48, 152, 152, 0.15);
+    --primary-gradient: linear-gradient(135deg, #27807f, #309898);
+
+    --secondary: #FF9F00;
+    --secondary-soft: rgba(255, 159, 0, 0.08);
+    --secondary-gradient: linear-gradient(135deg, #F4631E, #FF9F00);
+
+    --accent: #F4631E;
+    --accent-soft: rgba(244, 99, 30, 0.08);
+    --accent-gradient: linear-gradient(135deg, #d95518, #F4631E);
+
+    --text: #222233;
+    --text-2: #444455;
+    --text-3: #888899;
+    --text-inverse: #ffffff;
+
+    --danger: #CB0404;
+    --danger-soft: rgba(203, 4, 4, 0.08);
+    --warning: #FF9F00;
+    --warning-soft: rgba(255, 159, 0, 0.08);
+    --info: #309898;
+    --info-soft: rgba(48, 152, 152, 0.08);
+    --success: #059669;
+    --success-soft: rgba(5, 150, 105, 0.08);
+
+    --shadow-color: rgba(20, 20, 30, 0.06);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(20, 20, 30, 0.06);
+    --backdrop-blur: 12px;
+
+    --sidebar-bg: rgba(255, 255, 255, 0.95);
+    --sidebar-border: rgba(20, 20, 30, 0.06);
+}
+
+/* =============================================================================
+   Theme: Pastel Dream Dark
+   Lavanda + rosa pastel em fundo escuro
+   ============================================================================= */
+[data-theme="pastel-dream-dark"] {
+    --bg-deep: #0a0912;
+    --bg: #100f17;
+    --bg-elevated: #1a182a;
+    --surface: rgba(31, 28, 41, 0.85);
+    --surface-2: rgba(40, 36, 54, 0.7);
+    --surface-3: rgba(52, 46, 68, 0.5);
+    --surface-hover: rgba(181, 167, 245, 0.04);
+    --surface-active: rgba(181, 167, 245, 0.08);
+
+    --border: rgba(160, 148, 200, 0.08);
+    --border-2: rgba(160, 148, 200, 0.14);
+    --border-focus: rgba(181, 167, 245, 0.4);
+
+    --primary: #B5A7F5;
+    --primary-hover: #9c8ce8;
+    --primary-soft: rgba(181, 167, 245, 0.12);
+    --primary-glow: rgba(181, 167, 245, 0.2);
+    --primary-gradient: linear-gradient(135deg, #9c8ce8, #B5A7F5);
+
+    --secondary: #FFB3D1;
+    --secondary-soft: rgba(255, 179, 209, 0.12);
+    --secondary-gradient: linear-gradient(135deg, #ff8ab8, #FFB3D1);
+
+    --accent: #FFD8B3;
+    --accent-soft: rgba(255, 216, 179, 0.12);
+    --accent-gradient: linear-gradient(135deg, #ffc080, #FFD8B3);
+
+    --text: #fffff5;
+    --text-2: #b0acc4;
+    --text-3: #6b6580;
+    --text-inverse: #100f17;
+
+    --danger: #FEF9B0;
+    --danger-soft: rgba(254, 249, 176, 0.15);
+    --warning: #FFD8B3;
+    --warning-soft: rgba(255, 216, 179, 0.12);
+    --info: #B5A7F5;
+    --info-soft: rgba(181, 167, 245, 0.12);
+    --success: #34d399;
+    --success-soft: rgba(52, 211, 153, 0.12);
+
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --glass-bg: rgba(31, 28, 41, 0.6);
+    --glass-border: rgba(160, 148, 200, 0.08);
+    --backdrop-blur: 16px;
+
+    --sidebar-bg: rgba(10, 9, 18, 0.92);
+    --sidebar-border: rgba(160, 148, 200, 0.06);
+}
+
+/* =============================================================================
+   Theme: Pastel Dream Light
+   Lavanda + rosa pastel em fundo claro
+   ============================================================================= */
+[data-theme="pastel-dream-light"] {
+    --bg-deep: #f0f0f5;
+    --bg: #ffffff;
+    --bg-elevated: #faf8fc;
+    --surface: rgba(250, 248, 252, 0.9);
+    --surface-2: rgba(240, 240, 245, 0.8);
+    --surface-3: rgba(230, 228, 240, 0.5);
+    --surface-hover: rgba(181, 167, 245, 0.04);
+    --surface-active: rgba(181, 167, 245, 0.08);
+
+    --border: rgba(30, 25, 50, 0.06);
+    --border-2: rgba(30, 25, 50, 0.1);
+    --border-focus: rgba(181, 167, 245, 0.4);
+
+    --primary: #B5A7F5;
+    --primary-hover: #9c8ce8;
+    --primary-soft: rgba(181, 167, 245, 0.08);
+    --primary-glow: rgba(181, 167, 245, 0.15);
+    --primary-gradient: linear-gradient(135deg, #9c8ce8, #B5A7F5);
+
+    --secondary: #FFB3D1;
+    --secondary-soft: rgba(255, 179, 209, 0.08);
+    --secondary-gradient: linear-gradient(135deg, #ff8ab8, #FFB3D1);
+
+    --accent: #FFD8B3;
+    --accent-soft: rgba(255, 216, 179, 0.08);
+    --accent-gradient: linear-gradient(135deg, #ffc080, #FFD8B3);
+
+    --text: #222233;
+    --text-2: #444455;
+    --text-3: #888899;
+    --text-inverse: #ffffff;
+
+    --danger: #dc2626;
+    --danger-soft: rgba(220, 38, 38, 0.08);
+    --warning: #d97706;
+    --warning-soft: rgba(217, 119, 6, 0.08);
+    --info: #B5A7F5;
+    --info-soft: rgba(181, 167, 245, 0.08);
+    --success: #059669;
+    --success-soft: rgba(5, 150, 105, 0.08);
+
+    --shadow-color: rgba(30, 25, 50, 0.06);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(30, 25, 50, 0.06);
+    --backdrop-blur: 12px;
+
+    --sidebar-bg: rgba(255, 255, 255, 0.95);
+    --sidebar-border: rgba(30, 25, 50, 0.06);
+}

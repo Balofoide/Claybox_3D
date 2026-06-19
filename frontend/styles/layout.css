@@ -1,0 +1,361 @@
+/* =============================================================================
+   Figure Manager — Layout
+   App shell, sidebar, content area, grid system
+   ============================================================================= */
+
+/* ── App Shell ──────────────────────────────────────────────────────────── */
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* ── Custom Titlebar (macOS Style) ─────────────────────────────────────── */
+#titlebar {
+    display: flex;
+    align-items: center;
+    height: var(--titlebar-height, 38px);
+    min-height: var(--titlebar-height, 38px);
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(var(--backdrop-blur, 20px));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur, 20px));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0 var(--sp-16);
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: var(--z-toast, 9999);
+    position: relative;
+    transition: background var(--duration-slow) var(--ease),
+                border-color var(--duration-slow) var(--ease);
+}
+
+/* ── Traffic Lights ────────────────────────────────────────────────── */
+.titlebar-traffic-lights {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1;
+}
+
+.traffic-light {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.15s ease;
+    position: relative;
+}
+
+/* Cores dos botões */
+.traffic-close    { background: #ff5f57; }
+.traffic-minimize { background: #febc2e; }
+.traffic-maximize { background: #28c840; }
+
+/* Ícones SVG — escondidos por padrão */
+.traffic-light svg {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    flex-shrink: 0;
+}
+
+.traffic-light.traffic-close svg    { color: #4a0002; }
+.traffic-light.traffic-minimize svg { color: #9a5b00; }
+.traffic-light.traffic-maximize svg { color: #006500; }
+
+/* Mostrar ícones ao hover no grupo */
+.titlebar-traffic-lights:hover .traffic-light svg {
+    opacity: 1;
+}
+
+/* Efeito hover individual — clarear um pouco */
+.traffic-close:hover    { background: #ff7b72; }
+.traffic-minimize:hover { background: #ffd056; }
+.traffic-maximize:hover { background: #4cd964; }
+
+/* Active — escurecer ao clicar */
+.traffic-close:active    { background: #e0443e; }
+.traffic-minimize:active { background: #dfaa1e; }
+.traffic-maximize:active { background: #1fb636; }
+
+/* ── Título centralizado ───────────────────────────────────────────── */
+.titlebar-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--font-xs);
+    font-weight: 500;
+    color: var(--text-3);
+    letter-spacing: 0.2px;
+    pointer-events: none;
+    transition: color var(--duration-slow) var(--ease);
+}
+
+/* Spacer para manter o layout flex balanceado */
+.titlebar-spacer {
+    flex: 1;
+}
+
+/* ── App Body (sidebar + content) ──────────────────────────────────────── */
+#app-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ── Sidebar ────────────────────────────────────────────────────────────── */
+#sidebar {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    height: 100%;
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border-right: 1px solid var(--sidebar-border);
+    display: flex;
+    flex-direction: column;
+    padding: var(--sp-16) var(--sp-10);
+    gap: var(--sp-4);
+    z-index: var(--z-sidebar);
+    transition: background var(--duration-slow) var(--ease),
+                border-color var(--duration-slow) var(--ease);
+}
+
+/* ── Brand ──────────────────────────────────────────────────────────── */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-12);
+    padding: var(--sp-8) var(--sp-8) var(--sp-24);
+}
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-gradient);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--text-inverse);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.brand-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    pointer-events: none;
+}
+
+.brand-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-size: var(--font-lg);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    transition: color var(--duration-slow) var(--ease);
+}
+
+.brand-sub {
+    font-size: var(--font-xs);
+    font-weight: 500;
+    color: var(--text-3);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color var(--duration-slow) var(--ease);
+}
+
+/* ── Nav Section ────────────────────────────────────────────────────── */
+.nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+}
+
+.nav-label {
+    font-size: var(--font-xs);
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: var(--sp-12) var(--sp-12) var(--sp-6);
+    transition: color var(--duration-slow) var(--ease);
+}
+
+.sidebar-spacer { flex: 1; }
+
+/* ── Nav Item ───────────────────────────────────────────────────────── */
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-10);
+    padding: var(--sp-10) var(--sp-12);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-base);
+    font-weight: 500;
+    color: var(--text-2);
+    transition: all var(--duration) var(--ease);
+    text-align: left;
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background: var(--surface-hover);
+    color: var(--text);
+}
+
+.nav-item.active {
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    border-radius: var(--sp-2);
+    background: var(--primary);
+    box-shadow: 0 0 8px var(--primary-glow);
+}
+
+.nav-item svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+    transition: opacity var(--duration) var(--ease);
+}
+
+.nav-item:hover svg,
+.nav-item.active svg {
+    opacity: 1;
+}
+
+/* ── Content ────────────────────────────────────────────────────────── */
+#content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.page {
+    display: none;
+    padding: var(--sp-32);
+    min-height: 100%;
+    opacity: 0;
+}
+
+.page.active {
+    display: block;
+    animation: pageEnter var(--duration-slow) var(--ease) forwards;
+}
+
+/* ── Grid System ────────────────────────────────────────────────────── */
+.grid {
+    display: grid;
+    gap: var(--sp-16);
+}
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.flex {
+    display: flex;
+    gap: var(--sp-16);
+}
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-12);
+}
+.flex-1 { flex: 1; min-width: 0; }
+.flex-2 { flex: 2; min-width: 0; }
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--sp-8);
+}
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Spacing Utilities ──────────────────────────────────────────────── */
+.gap-8 { gap: var(--sp-8); }
+.gap-12 { gap: var(--sp-12); }
+.gap-16 { gap: var(--sp-16); }
+.gap-24 { gap: var(--sp-24); }
+.mt-8 { margin-top: var(--sp-8); }
+.mt-12 { margin-top: var(--sp-12); }
+.mt-16 { margin-top: var(--sp-16); }
+.mt-24 { margin-top: var(--sp-24); }
+.mb-8 { margin-bottom: var(--sp-8); }
+.mb-12 { margin-bottom: var(--sp-12); }
+.mb-16 { margin-bottom: var(--sp-16); }
+.mb-24 { margin-bottom: var(--sp-24); }
+
+/* ── Page Header ────────────────────────────────────────────────────── */
+.page-header {
+    margin-bottom: var(--sp-24);
+}
+
+.page-title {
+    font-size: var(--font-2xl);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: var(--sp-4);
+    transition: color var(--duration-slow) var(--ease);
+}
+
+.page-sub {
+    font-size: var(--font-base);
+    color: var(--text-2);
+    transition: color var(--duration-slow) var(--ease);
+}
+
+.section-title {
+    font-size: var(--font-md);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--sp-12);
+    transition: color var(--duration-slow) var(--ease);
+}
+
+.label {
+    font-size: var(--font-xs);
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: var(--sp-4);
+    transition: color var(--duration-slow) var(--ease);
+}
